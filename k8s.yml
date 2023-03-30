@@ -13,7 +13,7 @@ spec:
         app: hello-world
     spec:
       containers:
-        - image: andyjeffries/simple-ci-test:latest
+        - image: aakashnagpal4567/simple-ci-test:latest
           name: hello-world
       imagePullSecrets:
         - name: regcred
@@ -44,7 +44,11 @@ spec:
     - host: hello-world.CLUSTER_ID.k8s.civo.com
       http:
         paths:
-          - path: /
+          -
             backend:
-              serviceName: hello-world
-              servicePort: 5000
+              service:
+                name: hello-world
+                port:
+                  number: 5000
+            path: /
+            pathType: "Prefix"
